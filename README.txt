@@ -7,7 +7,7 @@ community types, ect
 
 notes-
 
-This uses code from Eric and Seth's Cedar and uses CSS and community
+This uses code from Seth's Cedar and uses CSS and community
 artwork from the original Closedverse by Arian Kordi and PF2M. All credit
 goes to them for creating these assets. 
 
