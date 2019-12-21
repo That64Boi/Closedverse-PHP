@@ -71,55 +71,157 @@ function printHeader($on_page)
 
     echo '<!DOCTYPE html>
     <head>
-    '. (isset($tabTitle) ? '<title>'. htmlspecialchars($tabTitle, ENT_QUOTES) .'</title>' : '').'
+    '. (isset($tabTitle) ? '<title>'. $tabTitle .'</title>' : '').'
     <link rel="stylesheet" type="text/css" href="/assets/css/style.css">';
     if (isset($_COOKIE['dark-mode'])) {
         echo '<link rel="stylesheet" type="text/css" href="/assets/css/dark.css">';
+    } elseif (isset($_COOKIE['amoled-mode'])) {
+        echo '<link rel="stylesheet" type="text/css" href="/assets/css/amoled.css">';
+    } elseif (isset($_COOKIE['neon-mode'])) {
+        echo '<link rel="stylesheet" type="text/css" href="/assets/css/neon.css">';
+    } elseif (isset($_COOKIE['translucent-mode'])) {
+        echo '<link rel="stylesheet" type="text/css" href="/assets/css/translucent.css">';
+    } elseif (isset($_COOKIE['blur-mode'])) {
+        echo '<link rel="stylesheet" type="text/css" href="/assets/css/blur.css">';
+    } elseif (isset($_COOKIE['stripe-mode'])) {
+        echo '<link rel="stylesheet" type="text/css" href="/assets/css/stripe.css">';
+    } elseif (isset($_COOKIE['retro-mode'])) {
+    	echo '<link rel="stylesheet" type="text/css" href="/assets/css/retro/root.css"> <!-- Retro theme -->';
+	if (strpos($_SERVER['REQUEST_URI'], '/users/') !== false) {
+		echo "<link rel='stylesheet' type='text/css' href='/assets/css/retro/users.css'>";
+	} elseif (strpos($_SERVER['REQUEST_URI'], '/news/my_news') !== false) {
+                echo "<link rel='stylesheet' type='text/css' href='/assets/css/retro/news-my-news.css'>";
+        } elseif (strpos($_SERVER['REQUEST_URI'], '/titles') !== false) {
+                echo "<link rel='stylesheet' type='text/css' href='/assets/css/retro/titles.css'>";
+        } elseif (strpos($_SERVER['REQUEST_URI'], '/replies') !== false or strpos($_SERVER['REQUEST_URI'], '/posts') !== false) {
+                echo "<link rel='stylesheet' type='text/css' href='/assets/css/retro/posts-replies.css'>";
+        } elseif (strpos($_SERVER['REQUEST_URI'], '/activity') !== false or strpos($_SERVER['REQUEST_URI'], '/settings') !== false or strpos($_SERVER['REQUEST_URI'], '/guide') !== false or strpos($_SERVER['REQUEST_URI'], '/admin_panel') !== false or strpos($_SERVER['REQUEST_URI'], '/identified_user_posts') !== false) {
+		echo "<link rel='stylesheet' type='text/css' href='/assets/css/retro/activity-settings-guide-admin_panel-identified_user_posts.css'>";
+	}
     }
-
-    if (isset($_COOKIE['cedar_background_image'])) {
-        echo '<style>
-        #wrapper:before {
-            background: url('. $_COOKIE['cedar_background_image'] .') !important;
-        }</style>';
+    if (isset($_COOKIE['stripe-color'])) {
+        echo '<script>/* GLOBAL VARIABLES */
+        var mainColor = "'. $_COOKIE['stripe-color'] .'"
+        var mainColorR = 0
+        var mainColorG = 0
+        var maincolorB = 0
+        var darkColor
+        var darkerColor
+       
+ 
+        function changeThemeColor() {
+           
+            /* Change hex to RGB for maths (sets 3 variables) */
+            hexToRgb(mainColor);  
+           
+           
+            /* Function does not output anything if value is 0, so this has to be done*/
+            if (!(mainColorR)) {mainColorR = 0;}
+            if (!(mainColorG)) {mainColorG = 0;}
+            if (!(mainColorB)) {mainColorB = 0;}
+           
+            /* Calculate darkColor & darkerColor */
+            darkColor = rgb2hex(mainColorR / 4, mainColorG / 4, mainColorB / 4);
+            darkerColor = rgb2hex(mainColorR / 8, mainColorG / 8, mainColorB / 8);
+           
+            /* Exception for #000000 */
+           
+            if (mainColor == "000000") { darkerColor = "#3f3f3f"; darkColor = "#1f1f1f" }
+                if (mainColor == "8000ff") { 
+                document.documentElement.style.setProperty("--theme", "initial");
+                document.documentElement.style.setProperty("--theme-dark", "initial"); 
+                document.documentElement.style.setProperty("--theme-darker", "initial");
+                }
+            /* Set CSS variables */
+            document.documentElement.style.setProperty("--theme", `rgb(${mainColorR}, ${mainColorG}, ${mainColorB})`);
+            document.documentElement.style.setProperty("--theme-dark", darkColor);
+            document.documentElement.style.setProperty("--theme-darker", darkerColor);
+           
+            /* so stuff doesnt complain bc theres no return statement */
+            return 0;
+            }
+           
+                    /* hex -> rgb */
+                     function hexToRgb(hex) {
+                          var bigint = parseInt(hex, 16);
+                          mainColorR = (bigint >> 16) & 255;
+                          mainColorG = (bigint >> 8) & 255;
+                          mainColorB = bigint & 255;
+                     
+                          return mainColorR + "," + mainColorG + "," + mainColorB;
+                      }
+                     
+                      /* rgb -> hex */
+                      function rgb2hex(red, green, blue) {
+                            var rgb = blue | (green << 8) | (red << 16);
+                            return "#" + (0x1000000 + rgb).toString(16).slice(1)
+                      }
+ 
+  function toDefault() {
+  document.documentElement.style.setProperty("--theme", "initial");
+  document.documentElement.style.setProperty("--theme-dark", "initial");
+  document.documentElement.style.setProperty("--theme-darker", "initial");
+  }
+  changeThemeColor();
+        </script>';
     }
-
+if (isset($_COOKIE['neon-color'])) {
+        echo '<script>/* GLOBAL VARIABLES */
+        var mainColor = "'. $_COOKIE['neon-color'] .'"
+        var mainColorR = 0
+        var mainColorG = 0
+        var maincolorB = 0
+       
+ 
+        function changeThemeColor() {
+           
+            /* Change hex to RGB for maths (sets 3 variables) */
+            hexToRgb(mainColor);  
+           
+           
+            /* Function does not output anything if value is 0, so this has to be done*/
+            if (!(mainColorR)) {mainColorR = 0;}
+            if (!(mainColorG)) {mainColorG = 0;}
+            if (!(mainColorB)) {mainColorB = 0;}
+          
+           
+            /* Set CSS variables */
+            document.documentElement.style.setProperty("--color", `rgb(${mainColorR}, ${mainColorG}, ${mainColorB})`);
+           
+            /* so stuff doesnt complain bc theres no return statement */
+            return 0;
+            }
+           
+                    /* hex -> rgb */
+                     function hexToRgb(hex) {
+                          var bigint = parseInt(hex, 16);
+                          mainColorR = (bigint >> 16) & 255;
+                          mainColorG = (bigint >> 8) & 255;
+                          mainColorB = bigint & 255;
+                     
+                          return mainColorR + "," + mainColorG + "," + mainColorB;
+                      }
+                     
+                      /* rgb -> hex */
+                      function rgb2hex(red, green, blue) {
+                            var rgb = blue | (green << 8) | (red << 16);
+                            return "#" + (0x1000000 + rgb).toString(16).slice(1)
+                      }
+ 
+  function toDefault() {
+  document.documentElement.style.setProperty("--color", "initial");
+  }
+  changeThemeColor();
+        </script>';
+    }
+    if (isset($_COOKIE['background'])) {
+        echo  '<style>#wrapper, #image-header-content {
+                background-image: url("'. $_COOKIE['background'] .'") !important;
+            }</style>';
+    }
     if (isset($_COOKIE['cedar_color_theme'])) {
         $HSL = explode(',', $_COOKIE['cedar_color_theme']);
-        echo '<style>
-        #global-menu li.selected a:before {color: hsl('.$HSL[0].','.$HSL[1].'%,'.$HSL[2].'%);}
-        #global-menu li.selected a {color: hsl('.$HSL[0].','.$HSL[1].'%,'.$HSL[2].'%) !important;}
-        #global-menu li a:hover, #global-menu li button:hover {box-shadow: inset 0 -4px 0 -1px hsl('.$HSL[0].','.$HSL[1].'%,'.$HSL[2].'%);}
-        #identified-user-banner .title {color: hsl('.$HSL[0].','.$HSL[1].'%,'.$HSL[2].'%);}
-        .tab2 a.selected, .tab3 a.selected {background: -webkit-gradient(linear, left top, left bottom, from(hsl('.($HSL[0]+3).','.($HSL[1]-12).'%,'.($HSL[2]+4).'%)), to(hsl('.($HSL[0]+3).','.$HSL[1].'%,'.($HSL[2]-7).'%)));}
-        .feeling-selector .feeling-button.checked {color: hsl('.$HSL[0].','.$HSL[1].'%,'.($HSL[2]+14).'%);}
-        .user-data h4 span {background-color: hsl('.$HSL[0].','.$HSL[1].'%,'.$HSL[2].'%);}
-        .sidebar-setting .sidebar-menu-post:before {color: hsl('.$HSL[0].','.$HSL[1].'%,'.$HSL[2].'%);}
-        .sidebar-setting .sidebar-menu-empathies:before {color: hsl('.$HSL[0].','.$HSL[1].'%,'.$HSL[2].'%);}
-        .sidebar-setting .sidebar-menu-nahs:before {color: hsl('.$HSL[0].','.$HSL[1].'%,'.$HSL[2].'%);}
-        h2.label {border-bottom: 3px solid hsl('.$HSL[0].','.$HSL[1].'%,'.$HSL[2].'%);color: hsl('.$HSL[0].','.$HSL[1].'%,'.$HSL[2].'%);}
-        .sidebar-setting .sidebar-menu-setting:before {color: hsl('.$HSL[0].','.$HSL[1].'%,'.$HSL[2].'%);}
-        .sidebar-setting .sidebar-menu-info:before {color: hsl('.$HSL[0].','.$HSL[1].'%,'.$HSL[2].'%);}
-        .sidebar-setting .sidebar-menu-guide:before {color: hsl('.$HSL[0].','.$HSL[1].'%,'.$HSL[2].'%);}
-        .sidebar-setting .sidebar-menu-replies:before {color: hsl('.$HSL[0].','.$HSL[1].'%,'.$HSL[2].'%);}
-        .index-memo h2:not(.label), #help .help-content h2 {background: hsl('.$HSL[0].','.$HSL[1].'%,'.$HSL[2].'%);}
-        h2.reply-label {background: hsl('.$HSL[0].','.$HSL[1].'%,'.$HSL[2].'%);border-top: 1px solid hsl('.$HSL[0].','.$HSL[1].'%,'.($HSL[2]-5).'%);}
-        #global-menu #global-my-menu .symbol:before {color: hsl('.$HSL[0].','.$HSL[1].'%,'.$HSL[2].'%);}
-        .dialog .window-title {
-            border-top: 1px solid hsl('.$HSL[0].','.$HSL[1].'%,'.$HSL[2].'%);border-bottom: 1px solid hsl('.$HSL[0].','.$HSL[1].'%,'.$HSL[2].'%);background: hsl('.$HSL[0].','.$HSL[1].'%,'.$HSL[2].'%);}
-        #post-meta .yeah-added + .nah + .empathy, .reply-meta .yeah-added + .nah + .empathy {color: hsl('.($HSL[0]).','.$HSL[1].'%,'.($HSL[2]).'%);}
-        #post-meta .yeah-added + .nah + .empathy:before, .reply-meta .yeah-added + .nah + .empathy:before {color: hsl('.$HSL[0].','.$HSL[1].'%,'.$HSL[2].'%);}
-        .news-list a.link {color: hsl('.$HSL[0].','.$HSL[1].'%,'.$HSL[2].'%);}
-        div#activity-feed-tutorial {border: 3px solid hsl('.$HSL[0].','.$HSL[1].'%,'.$HSL[2].'%);}
-        .list .toggle-button .follow-done-button:before, #image-header-content .image-header-title .title, .user-organization, .user-sidebar .user-dropdown-button:before, #user-dropdown-menu .symbol:before, .list .toggle-button .follow-button:before, .create-button:before, div#activity-feed-tutorial h3, .user-sidebar .friend-button:before, .user-sidebar .follow-button:before {color: hsl('.$HSL[0].','.$HSL[1].'%,'.$HSL[2].'%);}
-        #reply-content .list .my, .messages .post.my {background-color: hsl('.($HSL[0]+3).','.($HSL[1]-29).'%,'.($HSL[2]+47).'%);}
-        #reply-content .list .my:hover {background-color: hsl('.($HSL[0]+3).','.($HSL[1]-29).'%,'.($HSL[2]+46).'%);}
-        #reply-content .list .my:active {background-color: hsl('.($HSL[0]+3).','.($HSL[1]-29).'%,'.($HSL[2]+43).'%);}
-        @media screen and (max-width: 980px){
-        #global-menu li.selected a {
-            border-bottom: 2px solid hsl('.$HSL[0].','.$HSL[1].'%,'.$HSL[2].'%);
-        }}
-        </style>';
+        echo '';
     }
 
     ?>
