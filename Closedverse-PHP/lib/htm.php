@@ -85,20 +85,7 @@ function printHeader($on_page)
         echo '<link rel="stylesheet" type="text/css" href="/assets/css/blur.css">';
     } elseif (isset($_COOKIE['stripe-mode'])) {
         echo '<link rel="stylesheet" type="text/css" href="/assets/css/stripe.css">';
-    } elseif (isset($_COOKIE['retro-mode'])) {
-    	echo '<link rel="stylesheet" type="text/css" href="/assets/css/retro/root.css"> <!-- Retro theme -->';
-	if (strpos($_SERVER['REQUEST_URI'], '/users/') !== false) {
-		echo "<link rel='stylesheet' type='text/css' href='/assets/css/retro/users.css'>";
-	} elseif (strpos($_SERVER['REQUEST_URI'], '/news/my_news') !== false) {
-                echo "<link rel='stylesheet' type='text/css' href='/assets/css/retro/news-my-news.css'>";
-        } elseif (strpos($_SERVER['REQUEST_URI'], '/titles') !== false) {
-                echo "<link rel='stylesheet' type='text/css' href='/assets/css/retro/titles.css'>";
-        } elseif (strpos($_SERVER['REQUEST_URI'], '/replies') !== false or strpos($_SERVER['REQUEST_URI'], '/posts') !== false) {
-                echo "<link rel='stylesheet' type='text/css' href='/assets/css/retro/posts-replies.css'>";
-        } elseif (strpos($_SERVER['REQUEST_URI'], '/activity') !== false or strpos($_SERVER['REQUEST_URI'], '/settings') !== false or strpos($_SERVER['REQUEST_URI'], '/guide') !== false or strpos($_SERVER['REQUEST_URI'], '/admin_panel') !== false or strpos($_SERVER['REQUEST_URI'], '/identified_user_posts') !== false) {
-		echo "<link rel='stylesheet' type='text/css' href='/assets/css/retro/activity-settings-guide-admin_panel-identified_user_posts.css'>";
-	}
-    }
+    } 
     if (isset($_COOKIE['stripe-color'])) {
         echo '<script>/* GLOBAL VARIABLES */
         var mainColor = "'. $_COOKIE['stripe-color'] .'"
