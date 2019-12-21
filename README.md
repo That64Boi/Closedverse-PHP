@@ -1,8 +1,6 @@
 # Closedverse-PHP
 Closedverse PHP is a clone by Luke64 that's basically what it sounds like.
-This was made to be a better alternative to the original CV code which
-was written in python, overly complicated, probably has files missing,
-and not very beginner, or any user of the code in general, friendly. This
+This was made to be a alternative to the original CV code. This
 Closedverse has awesome new features like advanced theme options, more
 community types, etc.
 
