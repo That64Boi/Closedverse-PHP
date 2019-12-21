@@ -61,8 +61,8 @@ $router->addRoutes(array(
     array('POST', '/users/[*:action]/block', 'block.php', 'Block-User'),
     array('POST', '/users/[*:action]/unblock', 'unblock.php', 'Unblock-User')
 
-// Put other arrays here
-
+    // Put other arrays here
+    array('GET|POST', '/settings/theme', 'theme_settings.php', 'Theme-settings')
 ));
 
 // Match the current request
