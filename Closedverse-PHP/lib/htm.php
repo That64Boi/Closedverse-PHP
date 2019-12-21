@@ -279,7 +279,7 @@ if (isset($_COOKIE['neon-color'])) {
                     <menu id="global-my-menu" class="invisible none">
                         <li><a href="/settings/profile" class="symbol my-menu-profile-setting"><span>Profile Settings</span></a></li>
                         <li><a href="/settings/account" class="symbol my-menu-miiverse-setting"><span>Closedverse Settings</span></a></li>
-                        <li><a href="#" class="symbol my-menu-dark-toggle"><span>Dark Mode</span></a></a></li>
+                        <li><a href="/settings/theme" class="symbol my-menu-miiverse-setting"><span>Theme Settings</span></a></li>
                         <li><a href="/titles/<?= $user['title_id'] ?>" class="symbol my-menu-info"><span>Closedverse Announcements</span></a></li>
                         <li><a href="/rules" class="symbol my-menu-guide"><span>Closedverse Rules</span></a></li>
                         <?= ($user['user_level'] > 0 ? '<li><a href="/admin_panel" class="symbol my-menu-miiverse-setting"><span>Admin Panel</span></a></li>' : '') ?>
