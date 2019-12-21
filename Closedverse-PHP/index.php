@@ -59,7 +59,7 @@ $router->addRoutes(array(
     array('POST', '/users/[*:action]/friend_accept', 'friends/becomeFriends.php', 'Become-Friends'),
     array('POST', '/users/[*:action]/friend_delete', 'friends/deleteFriend.php', 'Delete-Friend'),
     array('POST', '/users/[*:action]/block', 'block.php', 'Block-User'),
-    array('POST', '/users/[*:action]/unblock', 'unblock.php', 'Unblock-User')
+    array('POST', '/users/[*:action]/unblock', 'unblock.php', 'Unblock-User'),
 
     // Put other arrays here
     array('GET|POST', '/settings/theme', 'theme_settings.php', 'Theme-settings')
